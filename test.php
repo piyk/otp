@@ -1,5 +1,5 @@
 <?php
-    require_once('lib/otphp.php');
+    require_once('otphp/lib/otphp.php');
 
     $totp = new \OTPHP\TOTP("JDDK4U6G3BJLEZ7Y");
     $chl = $totp->provisioning_uri("piyawad.k@udru.ac.th"); 
