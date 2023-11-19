@@ -1,15 +1,22 @@
 <?php
-    require_once('otphp/lib/otphp.php');
+    include 'otphp/lib/otphp.php';
+    include 'Base32.php';
 
-    $secretcode  = "JDDK4U6G3BJLEZ7Y";
+    
+    // edit account here
     $useraccount = "piyawad.k@udru.ac.th";
-
+    // edit secret code here
+    $secret = "secretcode";
+    
+    $a = new Base32en();
+    $secretcode = $a->base32_encode($secret); 
     $totp = new \OTPHP\TOTP($secretcode);
     $chl = $totp->provisioning_uri($useraccount); 
-    echo "url  ".$chl;
 
-    // 'https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/piyawad?secret=JDDK4U6G3BJLEZ7Y
+?>
+<br>
+<img src='https://www.google.com/chart?chs=250x250&chld=M|0&cht=qr&chl=<?php echo $chl; ?>'>
 
-    echo "<br>Current OTP: ". $totp->now();
-
-    //comment
+<?php
+     echo "<br><h1>OTP ===> ". $totp->now(). "</h1>"; 
+?>
